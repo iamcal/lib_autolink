@@ -3,9 +3,7 @@
 	#
 	# A PHP auto-linking library
 	#
-	# $Id: lib_autolink.php,v 1.4 2006/12/09 20:36:50 cal Exp $
-	#
-	# http://appliedthinking.org/autolinking/
+	# https://github.com/iamcal/lib_autolink
 	#
 	# By Cal Henderson <cal@iamcal.com>
 	# This code is licensed under a Creative Commons Attribution-ShareAlike 2.5 License
