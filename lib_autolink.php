@@ -137,7 +137,11 @@
 					#
 					# add the url
 					#
-
+					
+					if ($display_url != $link_url && !preg_match('@title=@msi',$tagfill)) {
+						$tag_fill .= ' title="'.$link_url.'"';
+					}
+					
 					$buffer .= "<a href=\"$link_url\"$tagfill>$display_url</a>";
 				
 				}else{
