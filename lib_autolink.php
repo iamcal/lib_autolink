@@ -13,18 +13,18 @@
 
 	####################################################################
 
-	function autolink($text, $limit=30, $tagfill=''){
+	function autolink($text, $limit=30, $tagfill='', $auto_title = true){
 
-		$text = autolink_do($text, 'https://',	$limit, $tagfill);
-		$text = autolink_do($text, 'http://',	$limit, $tagfill);
-		$text = autolink_do($text, 'ftp://',	$limit, $tagfill);
-		$text = autolink_do($text, 'www.',	$limit, $tagfill);
+		$text = autolink_do($text, 'https://',	$limit, $tagfill, $auto_title);
+		$text = autolink_do($text, 'http://',	$limit, $tagfill, $auto_title);
+		$text = autolink_do($text, 'ftp://',	$limit, $tagfill, $auto_title);
+		$text = autolink_do($text, 'www.',	$limit, $tagfill, $auto_title);
 		return $text;
 	}
 
 	####################################################################
 
-	function autolink_do($text, $sub, $limit, $tagfill){
+	function autolink_do($text, $sub, $limit, $tagfill, $auto_title){
 
 		$sub_len = strlen($sub);
 
@@ -137,7 +137,11 @@
 					#
 					# add the url
 					#
-
+					
+					if ($display_url != $link_url && !preg_match('@title=@msi',$tagfill) && $auto_title) {
+						$tagfill .= ' title="'.$link_url.'"';
+					}
+					
 					$buffer .= "<a href=\"$link_url\"$tagfill>$display_url</a>";
 				
 				}else{
