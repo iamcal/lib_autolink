@@ -17,6 +17,8 @@ Find URLs in HTML that are not already links, and make them into links.
     # insert some magic into the <a> tags
     $html = autolink($html, 30, ' class="mylink"');
 
+    # By default if the display url is truncated, a title attribute is added to the link, if you don't want this, add a 4th parameter of false
+    $html = autolink($html, 30, ' class="mylink"', false);
 
     # link up email address
     $html = autolink_email($html);
