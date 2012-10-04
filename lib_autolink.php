@@ -139,7 +139,11 @@
 					#
 					
 					if ($display_url != $link_url && !preg_match('@title=@msi',$tagfill) && $auto_title) {
-						$tagfill .= ' title="'.$link_url.'"';
+						if ("http://{$display_url}" != $link_url
+							&& "https://{$display_url}" != $link_url
+							&& "ftp://{$display_url}" != $link_url){
+								$tagfill .= ' title="'.$link_url.'"';
+						}
 					}
 					
 					$buffer .= "<a href=\"$link_url\"$tagfill>$display_url</a>";
