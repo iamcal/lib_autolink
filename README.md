@@ -30,3 +30,4 @@ If you have perl's <a href="http://search.cpan.org/dist/Test-Harness/">Test::Har
 run the tests using:
 
     prove --exec 'php' t/*.t
+ 
