@@ -1,4 +1,7 @@
 php:
   - 5.3
   - 5.4
-script: "prove --exec 'php' t/*.t"
+script:
+  - "env"
+  - "php -q"
+  - "prove --exec 'php' ./t/*.t"
