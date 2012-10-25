@@ -47,9 +47,9 @@
 	autolink_harness('{www.x.com}', '{<a href="http://www.x.com">www.x.com</a>}');
 
 	# enclosing markup tests
-	autolink_harness('<br>http://www.x.com', '<br><a href="http://www.x.com">http://www.x.com</a>');
+	autolink_harness('<br>http://www.x.com', '<br><a href="http://www.x.com">www.x.com</a>');
 	autolink_harness('<br>www.x.com', '<br><a href="http://www.x.com">www.x.com</a>');
 	autolink_harness('http://www.x.com<br>', '<a href="http://www.x.com">www.x.com</a><br>');
 	autolink_harness('www.x.com<br>', '<a href="http://www.x.com">www.x.com</a><br>');
-	autolink_harness('<br>http://www.x.com<br>', '<br><a href="http://www.x.com">http://www.x.com</a><br>');
+	autolink_harness('<br>http://www.x.com<br>', '<br><a href="http://www.x.com">www.x.com</a><br>');
 	autolink_harness('<br>www.x.com<br>', '<br><a href="http://www.x.com">www.x.com</a><br>');
