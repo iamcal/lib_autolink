@@ -4,7 +4,7 @@
 	include($dir.'/../lib_autolink.php');
 
 
-	plan(3);
+	plan(4);
 
 	# tagfill
 
