@@ -1,4 +1,4 @@
-<?
+<?php
 	function autolink_harness($in, $out, $name=null){
 		is(autolink($in), $out, $name);
 	}
