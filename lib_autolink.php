@@ -77,7 +77,7 @@
 			if ($ok){
 
 				if ($pre){
-					if (!preg_match('![\s\(\[\{]$!s', $pre)){
+					if (!preg_match('![\s\(\[\{>]$!s', $pre)){
 
 						#echo "fail 2 at $cursor ($pre)<br />\n";
 
