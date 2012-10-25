@@ -1,5 +1,7 @@
 # lib_autolink - PHP HTML link formatting library
 
+[![Build Status](https://secure.travis-ci.org/iamcal/lib_autolink.png)](http://travis-ci.org/iamcal/lib_autolink)
+
 Find URLs in HTML that are not already links, and make them into links.
 
 
