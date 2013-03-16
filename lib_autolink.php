@@ -15,18 +15,15 @@
 
 	function autolink($text, $limit=30, $tagfill='', $auto_title = true){
 
-		$text = autolink_do($text, 'https://',	$limit, $tagfill, $auto_title);
-		$text = autolink_do($text, 'http://',	$limit, $tagfill, $auto_title);
-		$text = autolink_do($text, 'ftp://',	$limit, $tagfill, $auto_title);
-		$text = autolink_do($text, 'www.',	$limit, $tagfill, $auto_title);
+		$text = autolink_do($text, '![a-z][a-z-]+://!i',	$limit, $tagfill, $auto_title);
+		$text = autolink_do($text, '!(mailto|skype):!i',	$limit, $tagfill, $auto_title);
+		$text = autolink_do($text, '!www\\.!i',			$limit, $tagfill, $auto_title, 'http://');
 		return $text;
 	}
 
 	####################################################################
 
-	function autolink_do($text, $sub, $limit, $tagfill, $auto_title){
-
-		$sub_len = strlen($sub);
+	function autolink_do($text, $sub, $limit, $tagfill, $auto_title, $force_prefix=null){
 
 		$text_l = StrToLower($text);
 		$cursor = 0;
@@ -36,14 +33,17 @@
 		while (($cursor < strlen($text)) && $loop){
 
 			$ok = 1;
-			$pos = strpos($text_l, $sub, $cursor);
+			$matched = preg_match($sub, $text_l, $m, PREG_OFFSET_CAPTURE, $cursor);
 
-			if ($pos === false){
+			if (!$matched){
 
 				$loop = 0;
 				$ok = 0;
 
 			}else{
+
+				$pos = $m[0][1];
+				$sub_len = strlen($m[0][0]);
 
 				$pre_hit = substr($text, $cursor, $pos-$cursor);
 				$hit = substr($text, $pos, $sub_len);
@@ -119,6 +119,7 @@
 					$cursor += strlen($url) + strlen($pre_hit);
 					$buffer .= $pre_hit;
 
+
 					#
 					# nice-i-fy url here
 					#
@@ -126,23 +127,27 @@
 					$link_url = $url;
 					$display_url = $url;
 
-					if (preg_match('!^([a-z]+)://!i', $url, $m)){
+					if ($force_prefix) $link_url = $force_prefix.$link_url;
+
+					if (preg_match('!^(http|https)://!i', $display_url, $m)){
+
 						$display_url = substr($display_url, strlen($m[1])+3);
-					}else{
-						$link_url = "http://$link_url";
 					}
 
 					$display_url = autolink_label($display_url, $limit);
+
 
 					#
 					# add the url
 					#
 					
 					if ($display_url != $link_url && !preg_match('@title=@msi',$tagfill) && $auto_title) {
-						if ("http://{$display_url}" != $link_url
-							&& "https://{$display_url}" != $link_url
-							&& "ftp://{$display_url}" != $link_url){
-								$tagfill .= ' title="'.$link_url.'"';
+
+						$display_quoted = preg_quote($display_url, '!');
+
+						if (!preg_match("!^(http|https)://{$display_quoted}$!i", $link_url)){
+
+							$tagfill .= ' title="'.$link_url.'"';
 						}
 					}
 					
