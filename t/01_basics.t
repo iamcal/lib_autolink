@@ -21,7 +21,7 @@
 	# protocol tests
 	autolink_harness('http://x.com', '<a href="http://x.com">x.com</a>');
 	autolink_harness('https://x.com', '<a href="https://x.com">x.com</a>');
-	autolink_harness('ftp://x.com', '<a href="ftp://x.com">x.com</a>');
+	autolink_harness('ftp://x.com', '<a href="ftp://x.com">ftp://x.com</a>');
 
 	# container tests
 	autolink_harness('<a href="x">www.x.com</a>', '<a href="x">www.x.com</a>');
