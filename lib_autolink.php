@@ -122,7 +122,7 @@
 					# remove trailing punctuation from url
 					#
 
-					if (preg_match('|[.,!;:?]$|', $url)){
+					while (preg_match('|[.,!;:?]$|', $url)){
 						$url = substr($url, 0, strlen($url)-1);
 						$cursor--;
 					}
