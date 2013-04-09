@@ -5,7 +5,7 @@
 	include($dir.'/../lib_autolink.php');
 
 
-	plan(35);
+	plan(37);
 
 	##################################################################################
 
@@ -37,6 +37,8 @@
 	autolink_harness('www.x.com!', '<a href="http://www.x.com">www.x.com</a>!');
 	autolink_harness('www.x.com?', '<a href="http://www.x.com">www.x.com</a>?');
 	autolink_harness('www.x.com)', '<a href="http://www.x.com">www.x.com</a>)');
+	autolink_harness('www.x.com...', '<a href="http://www.x.com">www.x.com</a>...');
+	autolink_harness('www.x.com!!!', '<a href="http://www.x.com">www.x.com</a>!!!');
 
 	# balacned trailing punctuation (thankyou wikipedia)
 	autolink_harness('www.x.com/woo(yay)', '<a href="http://www.x.com/woo(yay)">www.x.com/woo(yay)</a>');
