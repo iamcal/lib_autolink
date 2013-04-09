@@ -40,7 +40,7 @@
 	autolink_harness('www.x.com...', '<a href="http://www.x.com">www.x.com</a>...');
 	autolink_harness('www.x.com!!!', '<a href="http://www.x.com">www.x.com</a>!!!');
 
-	# balacned trailing punctuation (thankyou wikipedia)
+	# balanced trailing punctuation (thankyou wikipedia)
 	autolink_harness('www.x.com/woo(yay)', '<a href="http://www.x.com/woo(yay)">www.x.com/woo(yay)</a>');
 	autolink_harness('www.x.com/woo{yay}', '<a href="http://www.x.com/woo">www.x.com/woo</a>{yay}');
 	autolink_harness('www.x.com/woo[yay]', '<a href="http://www.x.com/woo">www.x.com/woo</a>[yay]');
