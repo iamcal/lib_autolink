@@ -5,7 +5,7 @@
 	include($dir.'/../lib_autolink.php');
 
 
-	plan(32);
+	plan(34);
 
 	##################################################################################
 
@@ -56,3 +56,6 @@
 
 	# issues seen elsewhere
 	autolink_harness('http://foo.com/Test_(test)', '<a href="http://foo.com/Test_(test)">foo.com/Test_(test)</a>');
+
+	autolink_harness('a http://foo.com/bar<baz> b', 'a <a href="http://foo.com/bar">foo.com/bar</a><baz> b');
+	autolink_harness('a http://foo.com/bar&lt;baz&gt; b', 'a <a href="http://foo.com/bar&lt;baz&gt;">foo.com/bar&lt;baz&gt;</a> b');
