@@ -112,27 +112,28 @@
 
 					$url = $hit.$matches[1];
 
+					$cursor += strlen($url) + strlen($pre_hit);
+					$buffer .= $pre_hit;
+
+					$url = html_entity_decode($url);
+
+
 					#
 					# remove trailing punctuation from url
 					#
 
 					if (preg_match('|[.,!;:?]$|', $url)){
 						$url = substr($url, 0, strlen($url)-1);
+						$cursor--;
 					}
 					foreach (array('()', '[]', '{}') as $pair){
 						$o = substr($pair, 0, 1);
 						$c = substr($pair, 1, 1);
 						if (preg_match("!^(\\$c|^)[^\\$o]+\\$c$!", $url)){
 							$url = substr($url, 0, strlen($url)-1);
+							$cursor--;
 						}
 					}
-
-					#
-					# commit
-					#
-
-					$cursor += strlen($url) + strlen($pre_hit);
-					$buffer .= $pre_hit;
 
 
 					#
@@ -167,8 +168,11 @@
 							$tagfill .= ' title="'.$link_url.'"';
 						}
 					}
-					
-					$buffer .= "<a href=\"$link_url\"$tagfill>$display_url</a>";
+
+					$link_url_enc = HtmlSpecialChars($link_url);
+					$display_url_enc = HtmlSpecialChars($display_url);
+
+					$buffer .= "<a href=\"{$link_url_enc}\"$tagfill>{$display_url_enc}</a>";
 				
 				}else{
 					#echo "fail 3 at $cursor<br />\n";
