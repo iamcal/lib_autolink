@@ -4,7 +4,7 @@
 	include($dir.'/../lib_autolink.php');
 
 
-	plan(4);
+	plan(8);
 
 	# tagfill
 
@@ -19,3 +19,14 @@
 
 	is(autolink('a www.abcdefghijklmnopqrstuvwxyz.com b', 10, '', false),
 		'a <a href="http://www.abcdefghijklmnopqrstuvwxyz.com">www.abc...</a> b');
+
+
+	# protocol stripping
+
+	$GLOBALS['autolink_options']['strip_protocols'] = true;
+	is(autolink('a http://foo.com b'), 'a <a href="http://foo.com">foo.com</a> b');
+	is(autolink('a https://foo.com b'), 'a <a href="https://foo.com">foo.com</a> b');
+
+	$GLOBALS['autolink_options']['strip_protocols'] = false;
+	is(autolink('a http://foo.com b'), 'a <a href="http://foo.com">http://foo.com</a> b');
+	is(autolink('a https://foo.com b'), 'a <a href="https://foo.com">https://foo.com</a> b');

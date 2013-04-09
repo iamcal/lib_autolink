@@ -13,6 +13,21 @@
 
 	####################################################################
 
+	#
+	# These are global options. You can set them before calling the autolinking
+	# functions to change the output.
+	#
+
+	$GLOBALS['autolink_options'] = array(
+
+		# Should http:// be visibly stripped from the front
+		# of URLs?
+		'strip_protocols' => true,
+
+	);
+
+	####################################################################
+
 	function autolink($text, $limit=30, $tagfill='', $auto_title = true){
 
 		$text = autolink_do($text, '![a-z][a-z-]+://!i',	$limit, $tagfill, $auto_title);
@@ -129,9 +144,11 @@
 
 					if ($force_prefix) $link_url = $force_prefix.$link_url;
 
-					if (preg_match('!^(http|https)://!i', $display_url, $m)){
+					if ($GLOBALS['autolink_options']['strip_protocols']){
+						if (preg_match('!^(http|https)://!i', $display_url, $m)){
 
-						$display_url = substr($display_url, strlen($m[1])+3);
+							$display_url = substr($display_url, strlen($m[1])+3);
+						}
 					}
 
 					$display_url = autolink_label($display_url, $limit);
