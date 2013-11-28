@@ -5,9 +5,6 @@
 	"autoload": {
 		"files": ["lib_autolink.php"]
 	},
-	"license": [
-		"GPL-3.0",
-		"CC-BY-SA-2.5"
-	]
+	"license": "MIT"
 }
 
