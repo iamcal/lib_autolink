@@ -4,7 +4,7 @@
 	include($dir.'/../lib_autolink.php');
 
 
-	plan(8);
+	plan(9);
 
 	# tagfill
 
@@ -19,6 +19,9 @@
 
 	is(autolink('a www.abcdefghijklmnopqrstuvwxyz.com b', 10, '', false),
 		'a <a href="http://www.abcdefghijklmnopqrstuvwxyz.com">www.abc...</a> b');
+
+	is(autolink('a www.abc.com b www.def.com c', 10),
+		'a <a href="http://www.abc.com" title="http://www.abc.com">www.abc...</a> b <a href="http://www.def.com" title="http://www.def.com">www.def...</a> c');
 
 
 	# protocol stripping
