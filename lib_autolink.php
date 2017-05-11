@@ -89,7 +89,7 @@
 			if ($ok){
 
 				if ($pre){
-					if (!preg_match('![\s\(\[\{>]$!s', $pre)){
+					if (!preg_match('![\s\(\[\{>\pZ\p{Cc}]$!s', $pre)){
 
 						#echo "fail 2 at $cursor ($pre)<br />\n";
 
@@ -155,7 +155,7 @@
 					#
 					# add the url
 					#
-					
+
 					$currentTagfill = $tagfill;
 					if ($display_url != $link_url && !preg_match('@title=@msi',$currentTagfill) && $auto_title) {
 
@@ -171,7 +171,7 @@
 					$display_url_enc = HtmlSpecialChars($display_url);
 
 					$buffer .= "<a href=\"{$link_url_enc}\"$currentTagfill>{$display_url_enc}</a>";
-				
+
 				}else{
 					#echo "fail 3 at $cursor<br />\n";
 
