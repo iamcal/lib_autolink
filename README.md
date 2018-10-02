@@ -4,6 +4,8 @@
 
 Find URLs in HTML that are not already links, and make them into links.
 
+Looking to do this in JavaScript? https://github.com/iamcal/autolink-js
+
 
 ## Usage
 
