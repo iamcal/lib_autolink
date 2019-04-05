@@ -42,7 +42,7 @@
 header('Content-Type: text/plain');
 register_shutdown_function('_test_end');
 
-$_no_plan = FALSE;
+$_no_plan = false;
 $_num_failures = 0;
 $_num_skips = 0;
 $_test_num = 0;
@@ -61,7 +61,7 @@ function plan($plan)
 
     switch ($plan) {
         case 'no_plan':
-            $_no_plan = TRUE;
+            $_no_plan = true;
             break;
 
         case 'skip_all':
@@ -89,7 +89,7 @@ function ok($pass, $test_name = '')
 
     if ($_num_skips) {
         $_num_skips--;
-        return TRUE;
+        return true;
     }
 
     if (!empty($test_name) && $test_name[0] != '#') {
@@ -203,20 +203,20 @@ function cmp_ok($this, $operator, $that, $test_name = '')
 
 function can_ok($object, $methods)
 {
-    $pass = TRUE;
+    $pass = true;
     $errors = array();
 
     foreach ($methods as $method) {
         if (!method_exists($object, $method)) {
-            $pass = FALSE;
+            $pass = false;
             $errors[] = "    method_exists(\$object, $method) failed";
         }
     }
 
     if ($pass) {
-        ok(TRUE, "method_exists(\$object, ...)");
+        ok(true, "method_exists(\$object, ...)");
     } else {
-        ok(FALSE, "method_exists(\$object, ...)");
+        ok(false, "method_exists(\$object, ...)");
         diag($errors);
     }
 
@@ -234,9 +234,9 @@ function isa_ok($object, $expected_class, $object_name = 'The object')
     }
 
     if ($pass) {
-        ok(TRUE, "$object_name isa $expected_class");
+        ok(true, "$object_name isa $expected_class");
     } else {
-        ok(FALSE, "$object_name isn't a '$expected_class' it's a '$got_class'");
+        ok(false, "$object_name isn't a '$expected_class' it's a '$got_class'");
     }
 
     return $pass;
@@ -244,12 +244,12 @@ function isa_ok($object, $expected_class, $object_name = 'The object')
 
 function pass($test_name = '')
 {
-    return ok(TRUE, $test_name);
+    return ok(true, $test_name);
 }
 
 function fail($test_name = '')
 {
-    return ok(FALSE, $test_name);
+    return ok(false, $test_name);
 }
 
 function diag($message)
