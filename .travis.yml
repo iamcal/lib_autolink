@@ -1,5 +1,0 @@
-language: php
-php:
-  - 5.4
-script:
-  - "prove --exec 'php' ./t/*.t"
