@@ -62,3 +62,7 @@
 	autolink_harness('a http://foo.com/bar<baz> b', 'a <a href="http://foo.com/bar">foo.com/bar</a><baz> b');
 	autolink_harness('a http://foo.com/bar&lt;baz&gt; b', 'a <a href="http://foo.com/bar&lt;baz&gt;">foo.com/bar&lt;baz&gt;</a> b');
 	autolink_harness('a http://foo.com/bar&#123; b', 'a <a href="http://foo.com/bar{">foo.com/bar{</a> b');
+
+	# escaping of the auto-title (specifically the amnpersand)
+	autolink_harness('a http://foo.1234567890.com/bar/?c=1&d=2 b',
+		'a <a href="http://foo.1234567890.com/bar/?c=1&amp;d=2" title="http://foo.1234567890.com/bar/?c=1&amp;d=2">foo.1234567890.com/bar/?c=1...</a> b');
